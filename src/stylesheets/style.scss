@@ -23,32 +23,39 @@ body {
 
 .search {
   margin-bottom: 2.5em;
+
   &__wrapper {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
   }
+
   &__label {
 	min-width: 100%;
 	font-weight: bold;
 	font-size: 1.1em;
   }
+
   &__help-text {
 	font-size: 0.9em;
   }
+
   &__help-tag {
 	font-weight: bold;
   }
+
   &__input-wrapper {
 	min-width: 100%;
 	display: flex;
   }
+
   &__input {
 	width: 100%;
 	font-family: Roboto, sans-serif;
 	font-size: 1em;
 	line-height: 2;
   }
+
   &__button {
 	margin-left: auto;
 	font-weight: bold;
@@ -67,34 +74,43 @@ body {
 .table {
   width: 100%;
   line-height: 1.6;
+
   &__head {
 	text-align: left;
+
 	&--user {
 	  text-align: center;
 	  color: white;
 	  background-color: rgb(51, 51, 52);
 	}
+
 	&--number {
 	  width: 2%;
 	}
+
 	&--name {
 	  width: 18%;
 	}
+
 	&--description {
 	  width: 35%;
 	}
+
 	&--date {
 	  width: 10%;
 	}
+
 	&--address {
 	  width: 35%;
 	}
   }
+
   &__row {
 	&:nth-child(odd) {
 	  background-color: #f2f2f2;
 	}
   }
+
   &__date {
 	&--no-repos {
 	  text-align: center;

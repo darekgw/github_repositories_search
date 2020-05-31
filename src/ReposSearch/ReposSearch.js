@@ -1,8 +1,3 @@
-// import {acceptedDataRegex, repoRegex} from '../Validation/Validation';
-const acceptedDataRegex = /^(( *<repos +((data-user="[a-zA-Z0-9_]+" +data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))")|(data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))" +data-user="[a-zA-Z0-9_]+")) *>)+ *)$/g;
-
-const repoRegex = /<repos +((data-user="[a-zA-Z0-9_]+" +data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))")|(data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))" +data-user="[a-zA-Z0-9_]+")) *>/g;
-
 export default class ReposSearch {
 	constructor() {
 		this.preparedUsersData = [];
@@ -11,19 +6,23 @@ export default class ReposSearch {
 	}
 
 	getDataFromInput = () => {
+		this.preparedUsersData = [];
 		this.usersRepos = [];
+		this.usersReposUpdatedAfterProvidedDate = [];
 		const input = document.querySelector(".search__input");
 		const dataFromInput = input.value;
 		this.__validateInputValue(dataFromInput);
 	};
 
 	__validateInputValue = (dataFromInput) => {
+		const acceptedDataRegex = /^(( *<repos +((data-user="[a-zA-Z0-9_]+" +data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))")|(data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))" +data-user="[a-zA-Z0-9_]+")) *>)+ *)$/g;
 		const acceptedFormatTest = acceptedDataRegex.test(dataFromInput);
 		if (acceptedFormatTest) this.__retrieveDataFromInput(dataFromInput);
 		else this.__inputValueFormatNotValid();
 	}
 
 	__retrieveDataFromInput = (dataFromInput) => {
+		const repoRegex = /<repos +((data-user="[a-zA-Z0-9_]+" +data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))")|(data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))" +data-user="[a-zA-Z0-9_]+")) *>/g;
 		const reposFromInput = dataFromInput.match(repoRegex);
 		this.__prepareUsersData(reposFromInput);
 	}
