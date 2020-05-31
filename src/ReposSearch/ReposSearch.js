@@ -1,3 +1,7 @@
+const acceptedDataRegex = /^(( *<repos +((data-user="[a-zA-Z0-9_]+" +data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))")|(data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))" +data-user="[a-zA-Z0-9_]+")) *>)+ *)$/g;
+
+const repoRegex = /<repos +((data-user="[a-zA-Z0-9_]+" +data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))")|(data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))" +data-user="[a-zA-Z0-9_]+")) *>/g;
+
 export default class ReposSearch {
 	constructor() {
 		this.preparedUsersData = [];
@@ -9,29 +13,22 @@ export default class ReposSearch {
 		this.usersRepos = [];
 		const input = document.querySelector(".search__input");
 		const dataFromInput = input.value;
-		console.log(dataFromInput);
 		this.__validateInputValue(dataFromInput);
 	};
 
 	__validateInputValue = (dataFromInput) => {
-		const acceptedDataRegex = /^(( *<repos +((data-user="[a-zA-Z0-9_]+" +data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))")|(data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))" +data-user="[a-zA-Z0-9_]+")) *>)+ *)$/g;
 		const acceptedFormatTest = acceptedDataRegex.test(dataFromInput);
-		console.log('acceptedFormatTest ', acceptedFormatTest);
 		if (acceptedFormatTest) this.__retrieveDataFromInput(dataFromInput);
 		else this.__inputValueFormatNotValid();
 	}
 
 	__retrieveDataFromInput = (dataFromInput) => {
-		const repoRegex = /<repos +((data-user="[a-zA-Z0-9_]+" +data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))")|(data-update="(\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9])))" +data-user="[a-zA-Z0-9_]+")) *>/g;
 		const reposFromInput = dataFromInput.match(repoRegex);
-		console.log('reposFromInput ', reposFromInput);
 		this.__prepareUsersData(reposFromInput);
-		console.log('this.preparedUsersData ', this.preparedUsersData);
 	}
 
 	__prepareUsersData = (reposFromInput) => {
 		this.preparedUsersData = reposFromInput.map(reposTag => {
-			console.log(reposTag);
 			const dummyDiv = document.createElement('div');
 			dummyDiv.innerHTML = reposTag;
 			const reposElement = dummyDiv.querySelector('repos');
@@ -54,17 +51,12 @@ export default class ReposSearch {
 
 	__loadUsersRepos = (usersData) => {
 		let usersRepos = [];
-
 		usersData.forEach(user => {
-			console.log('dd ', user);
 			usersRepos.push(this.__getDataFromUserRepos(user.userName));
 		});
-
 		Promise.all(usersRepos).then(allUsersRepos => {
 			this.usersRepos = allUsersRepos;
 			const everyUserExist = this.__checkIfUsersExist(this.usersRepos);
-			console.log('everyUserExist ', everyUserExist);
-			console.log('this.usersRepos ', this.usersRepos);
 			if(everyUserExist) {
 				this.__filterUsersReposUpdatedAfterProvidedDate(this.usersRepos, usersData);
 				this.__generateInfoTables(this.usersReposUpdatedAfterProvidedDate, usersData);
@@ -75,7 +67,6 @@ export default class ReposSearch {
 	}
 
 	__checkIfUsersExist = (usersRepos) => {
-		console.log('usersRepos ', usersRepos);
 		return usersRepos.every(userRepos => {
 			return Array.isArray(userRepos);
 		});
@@ -112,7 +103,6 @@ export default class ReposSearch {
 	}
 
 	__getDataFromUserRepos = (userName) => {
-		console.log('userNaem ', userName);
 		return new Promise((resolve, reject) => {
 			fetch(`https://api.github.com/users/${userName}/repos`)
 				.then(response => response.json())
@@ -129,11 +119,9 @@ export default class ReposSearch {
 	__generateInfoTables = (filteredUsersRepos, usersData) => {
 		const contentElement = document.querySelector('.content');
 		contentElement.innerHTML = '';
-		console.log('filteredUsersRepos ', filteredUsersRepos);
 		filteredUsersRepos.forEach((filteredUserRepos, index) => {
 			this.__generateInfoTable(filteredUserRepos, usersData, index);
 		})
-
 	}
 
 	__generateInfoTable = (filteredUserRepos, usersData, index) => {

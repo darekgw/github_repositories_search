@@ -1,5 +1,5 @@
 import '../stylesheets/style.scss';
-import ReposSearch from '../app/ReposSearch';
+import ReposSearch from '../ReposSearch/ReposSearch';
 
 document.addEventListener('DOMContentLoaded', function () {
 	const reposSearch = new ReposSearch();
@@ -10,6 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		reposSearch.getDataFromInput()
 	});
 	input.addEventListener('keyup', (e) => {
-		if(e.keyCode === 13) reposSearch.getDataFromInput();
+		if (e.keyCode === 13) reposSearch.getDataFromInput();
 	});
 });
