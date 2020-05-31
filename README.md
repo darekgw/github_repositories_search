@@ -1,33 +1,30 @@
-# Webpack ES6+ Sass Boilerplate
+# Github repositories search
 
-A minimalistic webpack 4 based boilerplate for building web apps.
+## General info
+This web application was prepared to retrieve and show Github users repositories. <br>
+Project is build as a Single Page Application.<br/>
 
-## What’s included?
+## Technologies
+- no frameworks
+- HTML 5
+- CSS 3
+- JavaScript
+- ES6
+- Webpack (version 4)
+- Babel (version 7)
+- SASS preprocessor for CSS
 
-- [Webpack 4](https://github.com/webpack/webpack) JavaScript module bundler
-- [Babel 7](https://babeljs.io/) compiler ES6+ code into a backwards compatible version of JavaScript
-- [SASS](http://sass-lang.com) preprocessor for CSS
-- [Autoprefixer](https://github.com/postcss/autoprefixer) for vendor prefixes (browser compability)
-- [Eslint](https://eslint.org) JavaScript linter
-- [Stylelint](http://stylelint.io) CSS/SASS linter
-- [Prettier](https://prettier.io/) an opinionated code formatter
-- [lint-staged](https://github.com/okonet/lint-staged) run linting and formatting your files that are marked as "staged" via `git add` before you commit.
+## Project structure
+- you can find source files in 'src' directory in the project root folder
+- you can find project configuration in package.json file
+
+## Project configuration
+Project structure and configuration is base on boilerplate project from Github: `https://github.com/vadimmarkov/webpack-es6-sass-boilerplate.git` by vadimmarkov.
 
 ## Getting started
-
-- clone the repo via `git clone https://github.com/vadimmarkov/webpack-es6-sass-boilerplate.git`
-- `cd webpack-es6-sass-boilerplate`
+- clone the repo via `git clone https://github.com/darekgw/github_repositories_search.git`
+- `cd github_repositories_search`
 - run `npm install` to fetch all the dependencies
-- run `npm run start` to start the [webpack-dev-server](https://github.com/webpack/webpack-dev-server) (`localhost:8080` will be opened automatically)
-- start developing
-- when you are done, run `npm run build` to get the production version of your app
+- run `npm start` to start the project in development mode (`localhost:8080` will be opened automatically)
 
-## Commands
 
-- `start` - start the dev server
-- `build` - create build in `build` folder
-- `analyze` - analyze your production bundle
-- `lint-code` - run an ESLint check
-- `lint-style` - run a Stylelint check
-- `check-eslint-config` - check if ESLint config contains any rules that are unnecessary or conflict with Prettier
-- `check-stylelint-config` - check if Stylelint config contains any rules that are unnecessary or conflict with Prettier

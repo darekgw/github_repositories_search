@@ -1,5 +1,5 @@
 import '../stylesheets/style.scss';
-import ReposSearch from '../ReposSearch';
+import ReposSearch from '../app/ReposSearch';
 
 document.addEventListener('DOMContentLoaded', function () {
 	const reposSearch = new ReposSearch();

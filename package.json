@@ -1,12 +1,12 @@
 {
   "name": "repos_search",
   "version": "0.2.0",
-  "description": "Search github repos",
+  "description": "Github repositories search",
   "author": "Dariusz Gwóźdź",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": " https://github.com/darekgw/github_repositories_search.git\n"
   },
   "scripts": {
     "start": "webpack-dev-server --open --mode development",

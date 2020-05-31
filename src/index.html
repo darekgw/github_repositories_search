@@ -12,13 +12,22 @@
 
 <body>
 <div class="application">
-	<header class="application__header header"></header>
+	<header class="application__header header">
+		<h1 class="header__info">Github repositories search</h1>
+	</header>
 	<section class="application__search search">
-			<div class="search__wrapper">
-				<label class="search__label" for="search">Search repositories</label>
-				<input class="search__input" type="text" id="search" name="search"/>
-				<button class="search__button">Search</button>
+		<div class="search__wrapper">
+			<label class="search__label" for="search">Search repositories</label>
+			<div class="search__help-text">To find user repositories, please, use &lt;repos&gt; tag in the following format: <span class="search__help-tag">&lt;repos data-user="provideExampleUserName" data-update="2019-05-01"&gt;</span>
+				<div>Provided date will be used to show only repositories updated after this date.
+					<div>You can pass more than one tag for every search.</div>
+				</div>
 			</div>
+			<div class="search__input-wrapper">
+			<input class="search__input" type="text" id="search" name="search"/>
+			<button class="search__button">Search</button>
+			</div>
+		</div>
 	</section>
 	<main class="application__content content">
 
